@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
@@ -7,34 +7,24 @@
   <script src="lib/onsen/js/onsenui.js"></script>
   <script src="js/app.js"></script>
 </head>
-
 <body>
-  <ons-splitter>
-    <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
-      <ons-page>
-        <ons-list>
-          <ons-list-item onclick="fn.load('category.html')" tappable>
-            Menu
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('list.html')" tappable>
-            List
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('order.html')" tappable>
-            Order
-          </ons-list-item>
-        </ons-list>
-      </ons-page>
-    </ons-splitter-side>
-    <ons-splitter-content>
-        <ons-navigator id="navi" page="category.html"></ons-navigator>
-      </ons-splitter-content>
-  </ons-splitter>
-  
-  <script>
-    function photo() {
-            document.querySelector('#myNavigator').pushPage('list.html', {animation:"lift"});
-}
-  </script>
-
+            <ons-splitter>
+                    <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+                      <ons-page id="index">
+                        <ons-list>
+                          <ons-list-item onclick="fn.load('category.html')" tappable>
+                            Category
+                          </ons-list-item>
+                          <ons-list-item onclick="fn.load('order.html')" tappable>
+                            Order
+                          </ons-list-item>
+                          <ons-list-item onclick="fn.load('login.html')" tappable>
+                            SignIn
+                          </ons-list-item>
+                        </ons-list>
+                      </ons-page>
+                    </ons-splitter-side>
+                    <ons-splitter-content id="content" page="category.html"></ons-splitter-content>
+                  </ons-splitter>
 </body>
 </html>
