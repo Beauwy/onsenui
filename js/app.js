@@ -13,6 +13,18 @@ firebase.initializeApp(firebaseConfig);
 
 var db = firebase.firestore();
 
+var cc;
+function cate(cate_id){
+  cc  = cate_id;
+  document.querySelector('#myNavigator').pushPage('catagory.html')
+}
+
+var tt;
+function thai(th_id){
+  tt  = th_id;
+  document.querySelector('#myNavigator').pushPage('menu.html')
+}
+
 document.addEventListener('init', function (event) {
   var page = event.target;
 
@@ -37,7 +49,7 @@ document.addEventListener('init', function (event) {
     $("carousel").empty();
     db.collection("restaurant").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        var item = `<ons-carousel-item modifier="nodivider" id="item${doc.data().rest_id}" class="recomended_item" onclick="">
+        var item = `<ons-carousel-item modifier="nodivider" id="item${doc.data().rest_id}" class="recomended_item" onclick="cate(${doc.data().rest_id})">
             <img src="${doc.data().rest_url}" width="120" height="120"></div>
             <div class="recomended_item_title" id="item1_${doc.data().rest_id}">${doc.data().rest_name}</div>
         </ons-carousel-item>`
@@ -89,6 +101,22 @@ document.addEventListener('init', function (event) {
       });
     });
 
+  }
+
+  if(page.id === 'categoryPage'){
+    $("carousel2").empty();
+    db.collection("rest_01").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        var item = `<ons-list-item tappable  id="menulist${doc.data().r_id}"   onclick="thai(${doc.data().r_id})"  style="color:rgb(255, 255, 255);" >      
+              
+        <img src="${doc.data().r_url}" width="80" height="82"  >
+        &nbsp;&nbsp;<p style="  font-size:20px;"> ${doc.data().r_name}   </p> 
+         
+    
+    </ons-list-item> `
+        $("#carousel2").append(item);
+      });
+    });
   }
 
   if (page.id === 'loginPage') {
